@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+/* Aplicar márgenes, relleno y box-sizing global, además de la fuente Poppins */
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+/* Estilos para el cuerpo de la página, centrar contenido y aplicar fondo */
+body 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #23242a;
+    overflow: hidden;
+}
+/* Contenedor principal que ocupa toda la pantalla */
+.container
+{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+/* Estilos para las burbujas animadas */
+.bubbles 
+{
+    position: absolute;
+    display: flex;
+}
+/* Cada burbuja individual */
+.bubbles span 
+{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background: #4fc3dc;
+    margin: 0 27px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #4fc3dc44,/* Efecto de resplandor en las burbujas */
+    0 0 50px #4fc3dc,
+    0 0 100px #4fc3dc;
+    animation: animate 20s linear infinite;
+    animation-duration: calc(125s / var(--i));
+    bottom: -30px;
+}
+.bubbles span:nth-child(even)
+{
+    background: #ff2d75;
+    box-shadow: 0 0 0 10px #ff2d75,
+    0 0 50px #ff2d75,
+    0 0 100px #ff2d75;
+}
+/* Definición de la animación para las burbujas que suben */
+@keyframes animate
+{
+    0%
+    {
+        transform: translateY(100vh) scale(0);/* Empiezan abajo y pequeñas */
+        opacity: 1; /* Totalmente visibles al inicio */
+    }
+    100%
+    {
+        transform: translateY(-10vh) scale(1); /* Se agrandan mientras suben */
+        opacity: 0; /* Desaparecen al final del recorrido */
+    }
+}
+/* Caja del formulario de inicio de sesión */
+.box
+{
+    position: relative;
+    width: 380px;
+    height: 420px;
+    background: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);/* Centra la caja */
+}
+/* Efecto de borde animado alrededor de la caja */
+.box::before
+{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg, transparent, transparent,#45f3ff,#45f3ff,#45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+}
+/* Segundo efecto de borde animado con retraso */
+.box::after
+{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg, transparent, transparent,#45f3ff,#45f3ff,#45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -3s;
+}
+/* Efectos adicionales de bordes animados */
+.borderLine
+{
+    position: absolute;
+    top: 0;
+    inset: 0;
+}
+/* Bordes adicionales animados en tonos rosados */
+.borderLine::before
+{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg, transparent, transparent,#0aff0a,#ff2770,#ff2770);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -1.5s;
+}
+/* Segundo borde rosado animado */
+.borderLine::after
+{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg, transparent, transparent,#ff2770,#ff2770,#ff2770);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -4.5s;
+}
+/* Reutilización de la animación para los bordes */
+@keyframes animate
+{
+    0%
+    {
+        transform: rotate(0deg);
+    }
+    100%
+    {
+        transform: rotate(360deg);
+    }
+}
+/* Estilos para el formulario dentro de la caja */
+.box form
+{
+    position: absolute;
+    inset: 4px;
+    background:#222;
+    padding: 50px 40px;
+    border-radius: 8px;
+    z-index:2;
+    display: flex;
+    flex-direction: column;
+}
+/* Título del formulario */
+.box form h2
+{
+    color: #ffffff;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+.box form .inputBox
+{
+    position: relative;
+    width: 300px;
+    margin-top: 35px;
+}
+/* Estilos para los campos de entrada */
+.box form .inputBox input
+{
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    color: #eaedfd;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+}
+/* Texto dentro de los campos de entrada */
+.box form .inputBox span
+{
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    pointer-events: none;
+    color: #ffffff;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+/* Efecto cuando se escribe o se enfoca en el campo */
+.box form .inputBox input:valid ~ span,
+.box form .inputBox input:focus ~ span
+{
+    color:#fff;
+    font-size: 0.75em;
+    transform: translateY(-34px);
+}
+
+.box form .inputBox i
+{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 300%;
+    height: 2px;
+    color: #ff0000;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    pointer-events: none;
+}
+/* Efecto animado en la línea inferior del campo */
+.box form .inputBox input:valid ~ i,
+.box form .inputBox input:focus ~ i
+{
+    height: 44px;
+}
+
+.box form .links
+{
+    display : flex;
+    justify-content: space-between;
+}
+/* Estilos para los enlaces dentro del formulario */
+.box form .links a
+{
+    margin : 10px 0;
+    font-size: 0.75em;
+    color:#8f8f8f;
+    text-decoration: none;
+}
+/* Efecto al pasar el cursor por los enlaces */
+.box form .links a:hover,
+.box form .links a:nth-child(2)
+{
+    color: #fff;
+}
+/* Estilo para el botón de enviar */
+.box form input[type="submit"]
+{
+    border: none;
+    outline: none;
+    padding: 9px 25px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 4px;
+    font-weight: 600;
+    width: 100px;
+    margin-top: 10px;
+}
+
+
